@@ -1,0 +1,10 @@
+<div>
+  <h3>Book detail</h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= @user.name %>
+  <%= @book.title %>
+  <%= @book.body %>
+  <% if @book.user == current_user %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
+</div>

@@ -1,10 +1,32 @@
-<div>
-  <h3>Book detail</h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= @user.name %>
-  <%= @book.title %>
-  <%= @book.body %>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
-</div>
+<%= render 'list', books: @books, book: @book_new, user: @user %>
+
+
+  <h2>Book detail</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@user) do%>
+            <%= image_tag @user.get_profile_image(100,100) %><br>
+            <%= @user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to @book.title, book_path(@book) %>
+        </td>
+        <td>
+          <%= @book.body %>
+        </td>
+        <% if @book.user == current_user %>
+          <td>
+            <%= link_to "Edit", edit_book_path(@book) %>
+          </td>
+          <td>
+            <%= link_to "Destroy", book_path(@book), method: :delete %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+

@@ -1,23 +1,33 @@
 <h1>Editing Book</h1>
 
+<% if @book.errors.any? %>
+  <h3><%= @book.errors.count %> errors prohibited this obj from belong saved:</h3>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_with model: @book do |f| %>
 <div>
   <label for="book_title">Title</label>
 </div>
 <div>
-  <%= f.text_field :title, autofocus: true, id: "inputTitle", placeholder: "タイトル" %>
+  <%= f.text_field :title, autofocus: true %>
 </div>
 <div>
   <label for="book_Opinion">Opinion</label>
 </div>
 <div>
-  <%= f.text_area :body, id: "inputOpinion", placeholder: "感想" %>
+  <%= f.text_area :body %>
 </div>
 <div>
   <%= f.submit "Update Book" %>
 </div>
 <% end %>
 
-<%= link_to "Show", book_path(@book) %>
+<%= link_to "Show", book_path(@book.id) %>
 |
 <%= link_to "Back", books_path %>
